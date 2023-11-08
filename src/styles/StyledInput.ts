@@ -16,16 +16,9 @@ const floatAnimation = keyframes`
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
 export const StyledInput = styled.input`
   padding: 1em;
-  margin: 1em;
+  margin: 4.20em;
   color: #333; // Text color
   background: #fff; // Input background color
   border: 2px solid #5b9aa0; // Border color
@@ -41,7 +34,7 @@ export const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #327a81; // Focus border color
+    border-color: #327a81; // Focu border color
     box-shadow: 0 0 0 2px #327a81; // Focus shadow color
   }
 
