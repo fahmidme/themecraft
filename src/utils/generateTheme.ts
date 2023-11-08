@@ -1,9 +1,5 @@
-// src/utils/openAiApi.ts
-import axios from "axios";
-
-// utils/openaiApi.js or a similar file
-
-const openaiApiCall = async (description: string) => {
+// src/utils/generateTheme.ts
+const generateTheme = async (description: string) => {
   const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // API key from environment variables
   const OPENAI_ORG_ID = process.env.REACT_APP_OPENAI_ORG_ID; // Organization ID from environment variables
 
@@ -56,4 +52,4 @@ const openaiApiCall = async (description: string) => {
   }
 };
 
-export default openaiApiCall;
+export default generateTheme;

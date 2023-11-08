@@ -9,8 +9,9 @@ import {
   Logo,
 } from "../styles/StyledComponents";
 import logoImage from "../assets/logo.png"; // Make sure the path matches the location of your logo file
-import openaiApiCall from "../utils/openAiApi"; // make sure this path is correct
+import generateTheme from "../utils/generateTheme"; // make sure this path is correct
 import { StyledForm } from "../styles/StyledForm";
+import ThemeVisualizer from "./ThemeVisualizer";
 
 const ThemeInput = () => {
   const [themeDescription, setThemeDescription] = useState("");
@@ -28,7 +29,7 @@ const ThemeInput = () => {
     setIsLoading(true);
 
     try {
-      const theme = await openaiApiCall(themeDescription);
+      const theme = await generateTheme(themeDescription);
       console.log(theme);
       setGeneratedTheme(theme);
     } catch (err) {
@@ -61,7 +62,7 @@ const ThemeInput = () => {
       {error && <p>{error}</p>}
       {generatedTheme && (
         // Render your theme representation based on the generatedTheme data
-        <div />
+        <ThemeVisualizer/>
       )}
     </Container>
   );
