@@ -43,7 +43,7 @@ const ThemeInput = () => {
   return (
     <Container>
       <Logo src={logoImage} alt="ThemeCraft Logo" />
-      <Title>ThemeCraft - Your Custom Theme Builder</Title>
+      <Title>ThemeCraft</Title>
       <Description>
         Enter a description of your desired web theme below, and let ThemeCraft
         generate a unique theme for you.
@@ -53,9 +53,11 @@ const ThemeInput = () => {
           placeholder="Describe your theme..."
           value={themeDescription}
           onChange={handleInputChange}
+          // Add a padding-right to make space for the button
+          style={{ paddingRight: "60px" }}
         />
         <StyledButton type="submit" disabled={isLoading}>
-          Generate Theme
+          🔮
         </StyledButton>
       </StyledForm>
       {isLoading && <p>Loading...</p>}

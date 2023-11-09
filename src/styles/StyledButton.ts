@@ -1,21 +1,18 @@
 // src/styles/StyledButton.ts
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  padding: 0.6em 1.2em;
-  margin-top: 1em; // Adjust as needed
-  background-color: #5b9aa0; // Button background color
-  color: white; // Button text color
+  position: absolute;
+  right: 0; // To account for the border of the StyledInput
+  top: 0; // To account for the border of the StyledInput
+  height: 100%;
+  width: 48px; // keep it square
   border: none;
-  border-radius: 5px; // Adjust to match your design preferences
+  background-color: transparent; // Match the input background color
   cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: #327a81; // Darker shade for hover state
-    transform: translateY(-2px); // Slight lift effect
+    font-size: 1.2em; // Increase the font size on hover
   }
 
   &:active {
@@ -23,7 +20,6 @@ export const StyledButton = styled.button`
   }
 
   &:disabled {
-    background-color: #c0c0c0; // Disabled state color
     cursor: not-allowed;
   }
 `;

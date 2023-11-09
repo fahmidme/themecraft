@@ -1,11 +1,30 @@
 // src/styles/StyledForm.ts
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const floatAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  50% {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+`;
 
 export const StyledForm = styled.form`
+  position: relative; // Set relative positioning context
+  margin-top: 25px;
+  align-items: center;
+  justify-content: center;
   display: flex;
-  flex-direction: column;
-  align-items: center; // This ensures that all form items are horizontally centered
-  width: 100%; // This ensures that the form takes the full width of its container
-  max-width: 600px; // This prevents the form from stretching too wide on larger screens
-  gap: 20px; // This adds space between form items, replace with the desired value
+  border-radius: 10px;
+  max-width: 85%;
+  width: 420px;
+
+  animation: ${floatAnimation} 4s ease-in-out infinite;
 `;

@@ -6,20 +6,18 @@ const generateTheme = async (description: string) => {
   // Data payload for the POST request
   const data = {
     model: "gpt-4-1106-preview",
-    max_tokens: 2500,
+    max_tokens: 1500,
     messages: [
       {
         role: "system",
-        content: `Please generate a JSON containing a list of UI "elements" that conform to a wireframe theme based on the provided user description. Each element in the 'elements' array should be a comprehensive object that includes the following properties:
-        
-          - 'id': A unique identifier for the element.
-          - 'type': The type of UI element (e.g., 'header', 'footer', 'nav', 'section', 'button', 'text', 'imagePlaceholder').
-          - 'content': A placeholder text or description indicating the element's purpose or content.
-          - 'style': CSS properties written in camelCase for inline styles that give the element a wireframe appearance, using only monochromatic colors and simple borders.
-          - 'defaultStyle': Default wireframe CSS properties that will be used if no custom style is provided.
-          - 'interaction': An object describing interaction styles and behaviors such as hover or click events, keeping inline with the wireframe theme.
-        
-        The 'elements' should be structured to enable a React component like 'ThemeVisualizer' to render a visual representation of a UI wireframe. The 'interaction' property should specify any simple dynamic behavior that the element should exhibit on user interaction, without complex animations or color changes. The response should be clear and detailed for direct implementation in a React application.`,
+        content: `Create a JSON structure with an array named "elements". Each item within this array should represent a UI element, defined by a set of properties that allow the 'ThemeVisualizer' React component to render a UI wireframe accurately. The properties are as follows:
+
+        - 'id': A unique string identifier for each element.
+        - 'type': A string indicating the UI element type (e.g., 'header', 'footer', 'nav', 'section', 'button', 'text', 'imagePlaceholder').
+        - 'content': Text or description for the element, serving as a placeholder or label.
+        - 'style': An object containing CSS properties in camelCase notation, reflecting a creative modern design.
+
+        The output JSON should be easily interpretable by the 'ThemeVisualizer' to showcase a visual layout of the UI. Interaction behaviors should be simplistic, focusing on fundamental user actions without intricate animations or color variations. Use the user's description to guide the generation of the UI elements. Ensure clarity and completeness for straightforward integration within a React environment.`,
       },
       {
         role: "user",
