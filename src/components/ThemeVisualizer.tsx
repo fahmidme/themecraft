@@ -35,25 +35,12 @@ const ThemeVisualizer = ({ theme }: { theme: any }) => {
             dangerouslySetInnerHTML={{ __html: content }}
           />
         );
-      case "text":
+      default:
         return (
           <div id={id} key={id} style={style} {...eventHandlers}>
             {content}
           </div>
         );
-      case "image":
-        return (
-          <img
-            id={id}
-            key={id}
-            src={content}
-            alt=""
-            style={style}
-            {...eventHandlers}
-          />
-        );
-      default:
-        return null;
     }
   };
 
