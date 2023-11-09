@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import interact from "interactjs";
 
 // Define the props for ThemeElement to include necessary properties
 interface ThemeElement {
@@ -19,7 +20,64 @@ interface ThemeVisualizerProps {
 }
 
 const ThemeVisualizer: React.FC<ThemeVisualizerProps> = ({ theme }) => {
-  // Define the method to render elements based on type
+  useEffect(() => {
+    theme.elements.forEach((element) => {
+      const target = document.getElementById(element.id);
+      if (target) {
+        interact(target)
+          .draggable({
+            inertia: true,
+            modifiers: [
+              interact.modifiers.restrictRect({
+                restriction: "parent",
+                endOnly: true,
+              }),
+            ],
+            autoScroll: true,
+          })
+          .resizable({
+            edges: { left: true, right: true, bottom: true, top: true },
+            inertia: true,
+          })
+          .on("dragmove", (event) => {
+            const target = event.target;
+            const x =
+              (parseFloat(target.getAttribute("data-x")) || 0) + event.dx;
+            const y =
+              (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
+
+            target.style.transform = `translate(${x}px, ${y}px)`;
+            target.setAttribute("data-x", x.toString());
+            target.setAttribute("data-y", y.toString());
+          })
+          .on("resizemove", (event) => {
+            const target = event.target;
+            let x = parseFloat(target.getAttribute("data-x")) || 0;
+            let y = parseFloat(target.getAttribute("data-y")) || 0;
+
+            target.style.width = event.rect.width + "px";
+            target.style.height = event.rect.height + "px";
+
+            x += event.deltaRect.left;
+            y += event.deltaRect.top;
+
+            target.style.transform = `translate(${x}px, ${y}px)`;
+            target.setAttribute("data-x", x.toString());
+            target.setAttribute("data-y", y.toString());
+          });
+      }
+    });
+
+    return () => {
+      theme.elements.forEach((element) => {
+        const target = document.getElementById(element.id);
+        if (target) {
+          interact(target).unset();
+        }
+      });
+    };
+  }, [theme.elements]);
+
   const renderElement = (element: ThemeElement) => {
     const { id, type, content, style } = element;
 
