@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center; // This will vertically center the children in the container
   align-items: center; // This will horizontally center the children in the container
   height: 100vh; // This makes the container take up the full viewport height
   padding: 20px;
@@ -34,12 +33,11 @@ export const Logo = styled.img`
 export const ThemeVisualizerContainer = styled.div`
   width: 100%; // Take up the full width of the parent
   min-height: 50vh; // Minimum height to ensure it takes space even if empty
-  margin-top: 20px; // Add some space above the visualizer
+  height: 80vh;
   position: relative; // Relative positioning for absolute children
-  border: 1px solid #ddd; // Add a border to visualize the component's boundaries
   background-color: #f8f8f8; // A light background to differentiate from the rest of the app
   border-radius: 8px; // Optional: rounded corners
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: some shadow for depth
-  padding: 20px; // Space inside the container
+  border-radius: 15px;
   overflow: auto; // Allow scrolling for overflow content
 `;

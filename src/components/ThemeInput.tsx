@@ -42,13 +42,17 @@ const ThemeInput = () => {
 
   return (
     <Container>
-      <Logo src={logoImage} alt="ThemeCraft Logo" />
-      <Title>ThemeCraft</Title>
-      <Description>
-        Enter a description of your desired web theme below, and let ThemeCraft
-        generate a unique theme for you.
-      </Description>
-      <StyledForm onSubmit={handleSubmit}>
+      {!generatedTheme && (
+        <>
+          <Logo src={logoImage} alt="ThemeCraft Logo" />
+          <Title>ThemeCraft</Title>
+          <Description>
+            Enter a description of your desired web theme below, and let
+            ThemeCraft generate a unique theme for you.
+          </Description>
+        </>
+      )}
+      <StyledForm onSubmit={handleSubmit} generatedTheme={generatedTheme}>
         <StyledInput
           placeholder="Describe your theme..."
           value={themeDescription}

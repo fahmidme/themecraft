@@ -10,12 +10,18 @@ const generateTheme = async (description: string) => {
     messages: [
       {
         role: "system",
-        content: `Create a JSON structure with an array named "elements". Each item within this array should represent a UI element, defined by a set of properties that allow the 'ThemeVisualizer' React component to render a UI wireframe accurately. The properties are as follows:
+        content: `Create a JSON structure with an array named "elements". Each item within this array should represent a UI element, defined by a set of properties that allow the 'ThemeVisualizer' React component to render a UI accurately. The properties are as follows:
 
         - 'id': A unique string identifier for each element.
         - 'type': A string indicating the UI element type (e.g., 'header', 'footer', 'nav', 'section', 'button', 'text', 'imagePlaceholder').
         - 'content': Text or description for the element, serving as a placeholder or label.
-        - 'style': An object containing CSS properties in camelCase notation, reflecting a creative modern design.
+        - 'style': An object containing extensive CSS properties in camelCase notation, reflecting a creative modern design.
+
+        The stylings MUST follow these:
+        - Aesthetically pleasing modern design.
+        - Consistent color scheme.
+        - Appropriate layout spacing and alignment.
+        - Elements can be positioned in absolute but they should all be in harmony.
 
         The output JSON should be easily interpretable by the 'ThemeVisualizer' to showcase a visual layout of the UI. Interaction behaviors should be simplistic, focusing on fundamental user actions without intricate animations or color variations. Use the user's description to guide the generation of the UI elements. Ensure clarity and completeness for straightforward integration within a React environment.`,
       },
