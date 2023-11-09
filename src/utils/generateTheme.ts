@@ -10,17 +10,16 @@ const generateTheme = async (description: string) => {
     messages: [
       {
         role: "system",
-        content: `Please generate a JSON configuration containing a list of UI "elements" based on the provided user description. Each element in the 'elements' array should be a comprehensive object that includes the following properties:
-  
-  - 'id': A unique identifier for the element.
-  - 'type': The type of element (e.g., 'button', 'text').
-  - 'content': The content to be displayed within the element, such as text.
-  - 'style': CSS properties written in camelCase that will be applied inline to the element in a React application.
-  - 'defaultStyle': Default CSS properties to fall back on if no custom style is provided.
-  - 'interaction': Object describing interaction styles and behaviors such as hover, click, or drag events.
-  
-  Each element's 'style' and 'defaultStyle' properties should be detailed enough to render the element correctly without external dependencies. The 'interaction' property should specify any dynamic behavior that the element should exhibit on user interaction. Ensure that each element's configuration is clear and detailed for direct use in a React component like 'ThemeVisualizer'.
-  The elements must be container components in a wireframe style, such as slick aesthetic fill color with cozy borders.`,
+        content: `Please generate a JSON containing a list of UI "elements" that conform to a wireframe theme based on the provided user description. Each element in the 'elements' array should be a comprehensive object that includes the following properties:
+        
+          - 'id': A unique identifier for the element.
+          - 'type': The type of UI element (e.g., 'header', 'footer', 'nav', 'section', 'button', 'text', 'imagePlaceholder').
+          - 'content': A placeholder text or description indicating the element's purpose or content.
+          - 'style': CSS properties written in camelCase for inline styles that give the element a wireframe appearance, using only monochromatic colors and simple borders.
+          - 'defaultStyle': Default wireframe CSS properties that will be used if no custom style is provided.
+          - 'interaction': An object describing interaction styles and behaviors such as hover or click events, keeping inline with the wireframe theme.
+        
+        The 'elements' should be structured to enable a React component like 'ThemeVisualizer' to render a visual representation of a UI wireframe. The 'interaction' property should specify any simple dynamic behavior that the element should exhibit on user interaction, without complex animations or color changes. The response should be clear and detailed for direct implementation in a React application.`,
       },
       {
         role: "user",
