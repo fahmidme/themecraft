@@ -30,3 +30,16 @@ export const Logo = styled.img`
   margin-bottom: 16px; // Adds space between the logo and the title
   border-radius: 10px; // Adjust this value to get the desired roundness of the edges
 `;
+
+export const ThemeVisualizerContainer = styled.div`
+  width: 100%; // Take up the full width of the parent
+  min-height: 50vh; // Minimum height to ensure it takes space even if empty
+  margin-top: 20px; // Add some space above the visualizer
+  position: relative; // Relative positioning for absolute children
+  border: 1px solid #ddd; // Add a border to visualize the component's boundaries
+  background-color: #f8f8f8; // A light background to differentiate from the rest of the app
+  border-radius: 8px; // Optional: rounded corners
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: some shadow for depth
+  padding: 20px; // Space inside the container
+  overflow: auto; // Allow scrolling for overflow content
+`;

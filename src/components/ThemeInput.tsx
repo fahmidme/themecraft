@@ -7,6 +7,7 @@ import {
   Title,
   Description,
   Logo,
+  ThemeVisualizerContainer,
 } from "../styles/StyledComponents";
 import logoImage from "../assets/logo.png"; // Make sure the path matches the location of your logo file
 import generateTheme from "../utils/generateTheme"; // make sure this path is correct
@@ -30,7 +31,6 @@ const ThemeInput = () => {
 
     try {
       const theme = await generateTheme(themeDescription);
-      console.log(theme);
       setGeneratedTheme(theme);
     } catch (err) {
       setError("An error occurred while generating the theme.");
@@ -62,7 +62,9 @@ const ThemeInput = () => {
       {error && <p>{error}</p>}
       {generatedTheme && (
         // Render your theme representation based on the generatedTheme data
-        <ThemeVisualizer/>
+        <ThemeVisualizerContainer className="theme-visualizer-container">
+          <ThemeVisualizer theme={generatedTheme} />
+        </ThemeVisualizerContainer>
       )}
     </Container>
   );
