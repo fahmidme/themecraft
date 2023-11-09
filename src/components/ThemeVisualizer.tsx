@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+// src/components/ThemeVisualizer.tsx
+import React, { useEffect, useState } from "react";
 import interact from "interactjs";
 
 // Define the props for ThemeElement to include necessary properties
-interface ThemeElement {
+export interface ThemeElement {
   id: string;
   type: string;
   content: string;
@@ -10,7 +11,7 @@ interface ThemeElement {
 }
 
 // Define the props for Theme which will hold an array of ThemeElement objects
-interface Theme {
+export interface Theme {
   elements: ThemeElement[];
 }
 
@@ -19,7 +20,34 @@ interface ThemeVisualizerProps {
   theme: Theme;
 }
 
-const ThemeVisualizer: React.FC<ThemeVisualizerProps> = ({ theme }) => {
+const ThemeVisualizer: React.FC<
+  ThemeVisualizerProps & {
+    onElementUpdate: (updatedElements: ThemeElement[]) => void;
+  }
+> = ({ theme, onElementUpdate }) => {
+  const [localTheme, setLocalTheme] = useState(theme);
+
+  useEffect(() => {
+    setLocalTheme(theme);
+  }, [theme]);
+
+  // Function to update element style
+  const updateElementStyle = (
+    id: string,
+    styleUpdates: React.CSSProperties
+  ) => {
+    setLocalTheme((prevTheme) => {
+      const updatedElements = prevTheme.elements.map((element) => {
+        if (element.id === id) {
+          return { ...element, style: { ...element.style, ...styleUpdates } };
+        }
+        return element;
+      });
+      onElementUpdate(updatedElements); // Notify ThemeInput about the change
+      return { ...prevTheme, elements: updatedElements };
+    });
+  };
+
   useEffect(() => {
     theme.elements.forEach((element) => {
       const target = document.getElementById(element.id);
@@ -76,7 +104,7 @@ const ThemeVisualizer: React.FC<ThemeVisualizerProps> = ({ theme }) => {
         }
       });
     };
-  }, [theme.elements]);
+  }, [localTheme]);
 
   const renderElement = (element: ThemeElement) => {
     const { id, type, content, style } = element;
