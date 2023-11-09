@@ -1,8 +1,5 @@
 // src/utils/generateTheme.ts
-const generateTheme = async (description: string) => {
-  const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // API key from environment variables
-  const OPENAI_ORG_ID = process.env.REACT_APP_OPENAI_ORG_ID; // Organization ID from environment variables
-
+const generateTheme = async (description: string, openAIKey: string) => {
   // Data payload for the POST request
   const data = {
     model: "gpt-4-1106-preview",
@@ -41,8 +38,7 @@ const generateTheme = async (description: string) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-        ...(OPENAI_ORG_ID && { "OpenAI-Organization": OPENAI_ORG_ID }), // Conditionally add the organization ID
+        Authorization: `Bearer ${openAIKey}`,
       },
       body: JSON.stringify(data),
     });

@@ -15,11 +15,19 @@ import { StyledForm } from "../styles/StyledForm";
 import ThemeVisualizer, { Theme, ThemeElement } from "./ThemeVisualizer";
 
 const ThemeInput = () => {
+  const [isOpenAIKeySet, setIsOpenAIKeySet] = useState(false);
+  const [openAIKey, setOpenAIKey] = useState("");
   const [themeDescription, setThemeDescription] = useState("");
   const [generatedTheme, setGeneratedTheme] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [updatedTheme, setUpdatedTheme] = useState<Theme | null>(null);
+
+  const handleOpenAIKeyChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setOpenAIKey(event.target.value);
+  };
 
   const handleElementUpdate = (updatedElements: ThemeElement[]) => {
     setUpdatedTheme({ elements: updatedElements });
@@ -31,11 +39,16 @@ const ThemeInput = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    if (!isOpenAIKeySet) {
+      setIsOpenAIKeySet(true);
+      return;
+    }
+
     setError(null);
     setIsLoading(true);
 
     try {
-      const theme = await generateTheme(themeDescription);
+      const theme = await generateTheme(themeDescription, openAIKey);
       setGeneratedTheme(theme);
     } catch (err) {
       setError("An error occurred while generating the theme.");
@@ -97,22 +110,42 @@ const ThemeInput = () => {
           <Logo src={logoImage} alt="ThemeCraft Logo" />
           <Title>ThemeCraft</Title>
           <Description>
-            Enter a description of your desired web theme below, and let
-            ThemeCraft generate a unique theme for you.
+            Enter your OpenAI key and a description of your desired web theme
+            below, and let ThemeCraft generate a unique theme for you.
           </Description>
         </>
       )}
       <StyledForm onSubmit={handleSubmit} generatedTheme={generatedTheme}>
-        <StyledInput
-          placeholder="Describe your theme..."
-          value={themeDescription}
-          onChange={handleInputChange}
-          // Add a padding-right to make space for the button
-          style={{ paddingRight: "60px" }}
-        />
-        <StyledButton type="submit" disabled={isLoading}>
-          🔮
-        </StyledButton>
+        {isOpenAIKeySet ? (
+          <>
+            <StyledInput
+              placeholder="Describe your theme..."
+              value={themeDescription}
+              onChange={handleInputChange}
+              // Add a padding-right to make space for the button
+              style={{ paddingRight: "60px" }}
+            />
+            <StyledButton type="submit" disabled={isLoading}>
+              🔮
+            </StyledButton>
+          </>
+        ) : (
+          <>
+            <StyledInput
+              placeholder="Enter your OpenAI Key..."
+              value={openAIKey}
+              onChange={handleOpenAIKeyChange}
+              style={{ paddingRight: "60px" }}
+            />
+            <StyledButton
+              type="submit"
+              disabled={isLoading}
+              style={{ fontSize: "1.5rem" }}
+            >
+              ▶️
+            </StyledButton>
+          </>
+        )}
         {generatedTheme && (
           <StyledButton
             type="button"
