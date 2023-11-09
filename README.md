@@ -5,6 +5,10 @@ https://github.com/fahmidme/themecraft/assets/16950663/73fd61fb-a469-4311-88de-a
 
 ThemeCraft is a dynamic, AI-powered web theme generator designed as a learning and starting point for creating dynamic, AI-generated websites. It leverages OpenAI's capabilities to interpret user descriptions and generate unique web themes, complete with interactive elements that can be dragged and resized.
 
+## Live Demo
+
+Experience ThemeCraft in action with a live demo: [https://themecraft.vercel.app/](https://themecraft.vercel.app/). This version is deployed on Vercel from the `user-key-input-version` branch, where users need to enter their OpenAI key first and then describe their desired theme to generate it.
+
 ## Getting Started
 
 ### Prerequisites
